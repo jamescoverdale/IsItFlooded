@@ -3,11 +3,22 @@
   "RiverName": "River Aire",
   "Footpaths": [
     {
-      "Name": "Leeds Dock",
+      "Name": "Leeds Dock - South Accommodation Road",
       "Description": "Leeds Dock footpath running east towards South Accommodation Road flyover bridge. Flooding usually first occurs under the Citu Footbridge.",
+      "StationId": "L1707A",
+      "WarningLevel": 24.45,
+      "DangerLevel": 24.5,
+      "Location": {
+        "Long": -1.526917,
+        "Lat": 53.789017
+      }
+    },
+    {
+      "Name": "Brewery Wharf - Crown Point Bridge",
+      "Description": "Brewery Wharf running east towards Crown Point Bridge.",
       "StationId": "L1707",
-      "WarningLevel": 1.0,
-      "DangerLevel": 1.3,
+      "WarningLevel": 1.65,
+      "DangerLevel": 1.7,
       "Location": {
         "Long": -1.526917,
         "Lat": 53.789017
