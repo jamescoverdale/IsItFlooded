@@ -74,7 +74,10 @@ namespace IsItFlooded
                 endpoints.MapControllerRoute("flood", "/{name}",
                     defaults: new {Controller = "Flooded", action = "Index", name = "name"});
 
-                
+                endpoints.MapControllerRoute("footpath", "/{name}/{footpath}",
+                    defaults: new { Controller = "Flooded", action = "Details", name = "name", footpath = "footpath" });
+
+
 
 
             });

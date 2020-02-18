@@ -8,6 +8,7 @@ namespace IsItFlooded.Data
 {
     public class Footpath
     {
+        public string LocationName { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public LongLat Location { get; set; }

@@ -1,0 +1,72 @@
+﻿@model DetailsViewModel
+
+@{
+    ViewBag.Title = Model.Footpath.Name;
+    Layout = "_Layout";
+
+    ViewData.Add(new KeyValuePair<string, object>("link", false));
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
+
+<style>
+    .map {
+        margin-top: 25px;
+        height: 400px;
+        width: 100%;
+    }
+</style>
+
+<h2><a href="/@Model.Footpath.LocationName">@Model.Footpath.LocationName</a> - @Model.Footpath.Name</h2>
+
+<hr />
+
+<partial name="FootpathPartial" model="@Model.Footpath" view-data="@ViewData" />
+
+<br />
+
+<div>
+    <h4>Latest Measurements</h4>
+    <table>
+        <tr>
+            <th>DateTime</th>
+            <th>Measurement</th>
+        </tr>
+        @foreach (var level in @Model.Levels)
+        {
+            <tr>
+                <td>@level.MeasurementDateTime.ToString("HH:mm")</td>
+                <td>@(level.Measurement)m</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div id="map" class="map"></div>
+<script type="text/javascript">
+    var map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            })
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([@Model.Footpath.Location.Long, @Model.Footpath.Location.Lat]),
+            zoom: 14
+        })
+    });
+
+    var element = document.createElement('div');
+    element.innerHTML = '<img src="https://cdn.mapmarker.io/api/v1/fa/stack?size=50&color=DC4C3F&icon=fa-microchip&hoffset=1" />';
+    var marker = new ol.Overlay({
+        position: ol.proj.fromLonLat([@Model.Footpath.Location.Long, @Model.Footpath.Location.Lat]),
+        positioning: 'center-center',
+        element: element,
+        stopEvent: false
+    });
+    map.addOverlay(marker);
+
+</script>
+

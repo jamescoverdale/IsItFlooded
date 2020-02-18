@@ -9,5 +9,7 @@ namespace IsItFlooded
     public interface IRiverLevelService
     {
         RiverLevelMeasurement GetRiverLevel(string stationId);
+
+        List<RiverLevelMeasurement> GetRiverLevels(string stationId, int count = 10);
     }
 }

@@ -61,5 +61,52 @@ namespace IsItFlooded
                 return null;
             }
         }
+
+        public List<RiverLevelMeasurement> GetRiverLevels(string stationId, int count = 10)
+        {
+            try
+            {
+                List<RiverLevelMeasurement> levels = new List<RiverLevelMeasurement>();
+
+                Trace.TraceInformation("EARiverLevelScraper:GetRiverLevels() - {0}", stationId);
+
+                using (WebClient client = new WebClient())
+                {
+                    string response = client.DownloadString(
+                        $"http://environment.data.gov.uk/flood-monitoring/id/stations/{stationId}/readings?_sorted&_limit={count}");
+
+                    if (string.IsNullOrWhiteSpace(response) == false)
+                    {
+                        var json = JsonConvert.DeserializeObject<dynamic>(response);
+
+
+                        foreach (var item in json["items"])
+                        {
+                            RiverLevelMeasurement level = new RiverLevelMeasurement()
+                            {
+                                Measurement = Convert.ToDouble(item["value"].ToString()),
+                                MeasurementDateTime = DateTime.Parse(item["dateTime"].ToString())
+                            };
+
+                            levels.Add(level);
+                        }
+                        
+
+                        return levels;
+                    }
+                    else
+                    {
+                        Trace.TraceError("EAApiRiverLevelScraper:GetRiverLevels() - response was null");
+                        return null;
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                Trace.TraceError("EAApiRiverLevelScraper:GetRiverLevels() - Error. Ex {0}. {1}", Ex.Message, Ex.StackTrace);
+
+                return null;
+            }
+        }
     }
 }

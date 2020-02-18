@@ -47,6 +47,9 @@
         <p class="card-text">@Model.Description</p>
         <p class="card-text">Actual Level: @(Model.ActualLevel)m</p>
         <p class="card-text">Danger Level: @(Model.DangerLevel)m <br /><small class="text-muted">Warning Level: @(Model.WarningLevel)m</small></p>
-        <a href="#" class="btn btn-primary">@Model.Name</a>
+        @if (ViewData.ContainsKey("link") == false)
+        {
+            <a href="@Model.LocationName/@Model.Name.Replace(" ", "")" class="btn btn-primary">@Model.Name</a>
+        }
     </div>
 </div>

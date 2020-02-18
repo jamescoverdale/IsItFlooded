@@ -22,6 +22,7 @@
 <h4>Footpaths</h4>
 @foreach (var footpath in Model.Footpaths)
 {
+    footpath.LocationName = Model.Name;
     <partial name="FootpathPartial" model="@footpath">
         <br />
     </partial>
