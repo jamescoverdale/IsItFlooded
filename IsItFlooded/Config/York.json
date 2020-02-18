@@ -1,0 +1,17 @@
+{
+  "Name": "York",
+  "RiverName": "River Ouse",
+  "Footpaths": [
+    {
+      "Name": "Cinder Lane north of Scarborough Bridge ",
+      "Description": "Cinder Lane north of Scarborough Bridge ",
+      "StationId": "L2406",
+      "WarningLevel": 3.4,
+      "DangerLevel": 3.5,
+      "Location": {
+        "Long": -1.096369,
+        "Lat": 53.961712
+      }
+    }
+  ]
+}
