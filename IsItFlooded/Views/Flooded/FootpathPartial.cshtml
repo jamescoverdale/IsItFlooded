@@ -1,0 +1,50 @@
+﻿@using System.Security.Cryptography.X509Certificates
+@using IsItFlooded.Data
+@model IsItFlooded.Data.Footpath
+
+@{
+
+    string GetStatusColour(FootpathStatus status)
+    {
+        if (status == FootpathStatus.Danger)
+        {
+            return "red";
+        }
+
+        if (status == FootpathStatus.Warn)
+        {
+            return "orange";
+        }
+
+        return "green";
+    }
+
+    string GetFootpathStatusDisplayText(FootpathStatus status)
+    {
+        if (status == FootpathStatus.Danger)
+        {
+            return "YES";
+        }
+
+        if (status == FootpathStatus.Warn)
+        {
+            return "MAYBE";
+        }
+
+        return "NO";
+    }
+
+}
+
+<div class="card" style="">
+    <div class="card-img-top" alt="..." style="background-color: @GetStatusColour(Model.GetFootpathStatus()); height: 100px;">
+        <span style="margin: auto; color: #ffffff; font-size: 50px; text-align: center;">
+            <p>@(GetFootpathStatusDisplayText(Model.GetFootpathStatus()))</p>
+        </span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <a href="#" class="btn btn-primary">@Model.Name</a>
+    </div>
+</div>

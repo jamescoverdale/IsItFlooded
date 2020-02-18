@@ -1,0 +1,30 @@
+﻿@model MainPageViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+    <h1 class="display-4">IsItFlooded?</h1>
+    <p>Providing crowd sourced information about the current status of foot and cycle routes in areas that are prone to flooding. 
+        Current river level data from the Environment Agency is compared against community submitted data to figure out if certain routes are likely to be flooded.
+        Please don't take any information from this site as 100% accurate, use it mainly as a handy guide. 
+    </p>
+    
+    <p>
+        If you think the data displayed is not accurate, or a route is missing from the site then please submit feedback via a Github issue, this will help the site improve
+        and be more beneficial to other users.
+    </p>
+</div>
+
+<div class="">
+    <h2>Locations</h2>
+    
+    <br />
+    <ul>
+        @foreach (var location in Model.Locations)
+        {
+            <li><a style="font-size: large" href="/@location.Name">@location.Name</a> - @location.RiverName <small class="text-muted">Footpaths: @location.Footpaths.Count</small></li>
+        }
+    </ul>
+
+</div>

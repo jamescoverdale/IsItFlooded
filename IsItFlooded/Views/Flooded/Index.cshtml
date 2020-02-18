@@ -1,0 +1,28 @@
+﻿@using IsItFlooded.Data
+@model IsItFlooded.Data.FloodedLocation
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h2>@Model.Name - @Model.RiverName</h2>
+
+<hr />
+<br />
+
+@foreach (var level in Model.RiverLevelMeasurements)
+{
+    <h5>
+        <span style="font-weight: bold">@level.StationName</span> : @(level.Measurement)m
+        <span title="Level Trend: @level.GetTrend()">@(level.GetTrend() == Trend.Up ? "🔼" : (level.GetTrend() == Trend.Down ? "🔽" : "↔"))</span>
+        <small class="text-muted"><a href="https://flood-warning-information.service.gov.uk/station/@(level.StationRLOIid)">@level.MeasurementDateTime.ToString("yyyy-MM-dd HH:mm")</a></small>
+    </h5>
+}
+<br />
+<h4>Footpaths</h4>
+@foreach (var footpath in Model.Footpaths)
+{
+    <partial name="FootpathPartial" model="@footpath">
+        <br />
+    </partial>
+}

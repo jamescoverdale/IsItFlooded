@@ -1,0 +1,17 @@
+{
+  "Name": "Leeds",
+  "RiverName": "River Aire",
+  "Footpaths": [
+    {
+      "Name": "Leeds Dock",
+      "Description": "Leeds Dock footpath running east towards South Accommodation Road flyover bridge. Flooding usually first occurs under the Citu Footbridge.",
+      "StationId": "L1707",
+      "WarningLevel": 1.0,
+      "DangerLevel": 1.3,
+      "Location": {
+        "Long": 53.789017,
+        "Lat": -1.526917
+      }
+    }
+  ]
+}
