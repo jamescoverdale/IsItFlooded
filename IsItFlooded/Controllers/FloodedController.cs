@@ -8,6 +8,8 @@ namespace IsItFlooded.Controllers
 {
     public class FloodedController : Controller
     {
+
+        [ResponseCache(Duration = 60 * 15, VaryByHeader = "name")]
         public IActionResult Index(string name = "Leeds")
         {
             // look for config

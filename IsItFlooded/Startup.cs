@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AspNetCore.ResponseCaching.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace IsItFlooded
 {
@@ -24,13 +26,26 @@ namespace IsItFlooded
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching(ignoreBrowserNoCacheNoStore: true);
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
+            app.Use(async (ctx, next) =>
+                {
+                    ctx.Request.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromMinutes(15)
+                    };
+                    await next();
+                }
+            );
+
+
+            app.UseResponseCaching();
 
             if (env.IsDevelopment())
             {
@@ -48,6 +63,7 @@ namespace IsItFlooded
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

@@ -19,6 +19,7 @@ namespace IsItFlooded.Controllers
             _logger = logger;
         }
 
+        [ResponseCache(Duration = 60 *60)]
         public IActionResult Index()
         {
             MainPageViewModel model = new MainPageViewModel();
