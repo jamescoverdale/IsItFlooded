@@ -33,12 +33,14 @@ namespace IsItFlooded
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
+            app.UseResponseCaching();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
+            }
+            else
+            {
                 app.Use(async (ctx, next) =>
                     {
                         ctx.Request.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
@@ -50,11 +52,6 @@ namespace IsItFlooded
                     }
                 );
 
-
-                app.UseResponseCaching();
-            }
-            else
-            {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
