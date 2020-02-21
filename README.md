@@ -7,3 +7,6 @@ Uses the open data provided by the Environment Agency compared with user submitt
 
 To add new Footpaths or new locations create an issue and state the relevant information. Or submit a PR with the modified json config 
 with the relevent information.
+
+
+![](https://raw.githubusercontent.com/jamescoverdale/IsItFlooded/master/IsItFlooded.JPG)
