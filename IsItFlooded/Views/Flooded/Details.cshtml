@@ -7,6 +7,7 @@
     ViewData["link"] =  false;
 }
 
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
 
@@ -25,25 +26,43 @@
 <partial name="FootpathPartial" model="@Model.Footpath" view-data="@ViewData" />
 
 <br />
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h4>Latest Measurements</h4>
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">DateTime</th>
+                    <th scope="col">Measurement</th>
+                    <th scope="col">Trend</th>
+                </tr>
+                @for(int i = 0; i < Model.Levels.Count - 1; i++)
+                {
+                    var level = Model.Levels[i];
+                    var trend = "";
 
-<div>
-    <h4>Latest Measurements</h4>
-    <table>
-        <tr>
-            <th>DateTime</th>
-            <th>Measurement</th>
-        </tr>
-        @foreach (var level in @Model.Levels)
-        {
-            <tr>
-                <td>@level.MeasurementDateTime.ToString("HH:mm")</td>
-                <td>@(level.Measurement)m</td>
-            </tr>
-        }
-    </table>
+                    if (i > 0)
+                    {
+                        trend = (level.Measurement > Model.Levels[i + 1].Measurement ? "<ion-icon style=\"font-size: 32px; color: red;\" name=\"arrow-up-circle\"></ion-icon>" : 
+                            (level.Measurement < Model.Levels[i + 1].Measurement ? "<ion-icon style=\"font-size: 32px; color: green;\" name=\"arrow-down-circle\"></ion-icon>" : 
+                                "<ion-icon style=\"font-size: 32px; color: green;\" name=\"arrow-remove\"></ion-icon>"));
+                    }
+
+                    <tr>
+                        <td>@level.MeasurementDateTime.ToString("HH:mm")</td>
+                        <td>@(level.Measurement)m</td>
+                        <td>@Html.Raw(trend)</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-8">
+            <h4>Map</h4>
+            <div id="map" class="map"></div>
+        </div>
 </div>
 
-<div id="map" class="map"></div>
+
 <script type="text/javascript">
     var map = new ol.Map({
         target: 'map',
