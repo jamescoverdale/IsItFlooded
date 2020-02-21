@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Footpath.Name;
     Layout = "_Layout";
 
-    ViewData.Add(new KeyValuePair<string, object>("link", false));
+    ViewData["link"] =  false;
 }
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">

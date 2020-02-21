@@ -23,33 +23,51 @@
     {
         if (status == FootpathStatus.Danger)
         {
-            return "YES";
+            return "FLOODED";
         }
 
         if (status == FootpathStatus.Warn)
         {
-            return "MAYBE";
+            return "MAYBE FLOODED";
         }
 
-        return "NO";
+        return "CLEAR";
+    }
+
+    string GetFootpathStatusLongDisplayText(FootpathStatus status)
+    {
+        if (status == FootpathStatus.Danger)
+        {
+            return "Currently Underwater";
+        }
+
+        if (status == FootpathStatus.Warn)
+        {
+            return "Maybe Underwater";
+        }
+
+        return "Currently Dry";
     }
 
 }
 
 <div class="card" style="">
-    <div class="card-img-top" alt="..." style="background-color: @GetStatusColour(Model.GetFootpathStatus()); height: 100px;">
-        <span style="margin: auto; color: #ffffff; font-size: 50px; text-align: center;">
-            <p style="margin-top: 10px;">@(GetFootpathStatusDisplayText(Model.GetFootpathStatus()))</p>
+    <div class="card-img-top" alt="..." style="background-color: @GetStatusColour(Model.GetFootpathStatus()); height: 75px;">
+        <span style="margin: auto; color: #ffffff; font-size: 40px; text-align: center;">
+            <p style="margin-top: 5px;" title="@GetFootpathStatusLongDisplayText(Model.GetFootpathStatus())">@(GetFootpathStatusDisplayText(Model.GetFootpathStatus()))</p>
         </span>
     </div>
-    <div class="card-body">
-        <h5 class="card-title">@Model.Name</h5>
-        <p class="card-text">@Model.Description</p>
-        <p class="card-text">Actual Level: @(Model.ActualLevel)m</p>
-        <p class="card-text">Danger Level: @(Model.DangerLevel)m <br /><small class="text-muted">Warning Level: @(Model.WarningLevel)m</small></p>
-        @if (ViewData.ContainsKey("link") == false)
+    <div style="" class="card-body">
+
+        @if ((bool)ViewData["link"] == false)
         {
-            <a href="@Model.LocationName/@Model.Name.Replace(" ", "")" class="btn btn-primary">@Model.Name</a>
+            <p class="card-text">@Model.Description</p>
+            <p class="card-text">Actual Level: @(Model.ActualLevel)m</p>
+            <p class="card-text">Danger Level: @(Model.DangerLevel)m <br /><small class="text-muted">Warning Level: @(Model.WarningLevel)m</small></p>
+        }
+        else
+        {
+            <span style="font-size: larger" class="card-title"><a  href="@Model.LocationName/@Model.Name.Replace(" ", "")">@Model.Name</a> - @GetFootpathStatusLongDisplayText(Model.GetFootpathStatus())</span>
         }
     </div>
 </div>

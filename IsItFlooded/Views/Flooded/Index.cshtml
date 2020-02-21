@@ -1,8 +1,10 @@
 ﻿@using IsItFlooded.Data
+@using MoreLinq
 @model IsItFlooded.Data.FloodedLocation
 
 @{
     ViewData["Title"] = Model.Name;
+    ViewData["link"] = true;
 }
 
 <h2>@Model.Name - @Model.RiverName</h2>
@@ -10,7 +12,7 @@
 <hr />
 <br />
 
-@foreach (var level in Model.RiverLevelMeasurements)
+@foreach (var level in Model.RiverLevelMeasurements.DistinctBy(t => t.StationRLOIid))
 {
     <h5>
         <span style="font-weight: bold">@level.StationName</span> : @(level.Measurement)m
@@ -23,7 +25,7 @@
 @foreach (var footpath in Model.Footpaths)
 {
     footpath.LocationName = Model.Name;
-    <partial name="FootpathPartial" model="@footpath">
+    <partial name="FootpathPartial" model="@footpath" view-data="@ViewData">
         <br />
     </partial>
 }

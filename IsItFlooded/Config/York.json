@@ -3,14 +3,58 @@
   "RiverName": "River Ouse",
   "Footpaths": [
     {
-      "Name": "Cinder Lane north of Scarborough Bridge ",
-      "Description": "Cinder Lane north of Scarborough Bridge ",
+      "Name": "New Walk riverside path",
+      "Description": "New Walk riverside path",
       "StationId": "L2406",
-      "WarningLevel": 3.4,
-      "DangerLevel": 3.5,
+      "WarningLevel": 2.35,
+      "DangerLevel": 2.4,
+      "Location": {
+        "Long": -1.078846,
+        "Lat": 53.948082
+      }
+    },
+    {
+      "Name": "Cinder Lane north of Scarborough Bridge",
+      "Description": "Cinder Lane north of Scarborough Bridge",
+      "StationId": "L2406",
+      "WarningLevel": 3.5,
+      "DangerLevel": 3.55,
       "Location": {
         "Long": -1.096369,
         "Lat": 53.961712
+      }
+    },
+    {
+      "Name": "Wellington Row esplanade to Scarborough Bridge",
+      "Description": "Cinder Lane north of Scarborough Bridge",
+      "StationId": "L2406",
+      "WarningLevel": 3.55,
+      "DangerLevel": 3.6,
+      "Location": {
+        "Long": -1.090248,
+        "Lat": 53.960407
+      }
+    },
+    {
+      "Name": "Access to Millennium Bridge from Hospital Fields Road",
+      "Description": "Access to Millennium Bridge from Hospital Fields Road",
+      "StationId": "L2406",
+      "WarningLevel": 3.75,
+      "DangerLevel": 3.8,
+      "Location": {
+        "Long": -1.081021,
+        "Lat": 53.944908
+      }
+    },
+    {
+      "Name": "Access to Millennium Bridge from Butcher Terrace",
+      "Description": "Access to Millennium Bridge from Butcher Terrace",
+      "StationId": "L2406",
+      "WarningLevel": 3.95,
+      "DangerLevel": 4,
+      "Location": {
+        "Long": -1.083489,
+        "Lat": 53.945723
       }
     }
   ]

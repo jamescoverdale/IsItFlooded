@@ -33,23 +33,25 @@ namespace IsItFlooded
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.Use(async (ctx, next) =>
-                {
-                    ctx.Request.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
-                    {
-                        Public = true,
-                        MaxAge = TimeSpan.FromMinutes(15)
-                    };
-                    await next();
-                }
-            );
-
-
-            app.UseResponseCaching();
+            
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.Use(async (ctx, next) =>
+                    {
+                        ctx.Request.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                        {
+                            Public = true,
+                            MaxAge = TimeSpan.FromMinutes(15)
+                        };
+                        await next();
+                    }
+                );
+
+
+                app.UseResponseCaching();
             }
             else
             {
