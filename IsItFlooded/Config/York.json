@@ -56,6 +56,17 @@
         "Long": -1.083489,
         "Lat": 53.945723
       }
-    }
+    },
+    {
+      "Name": "Access to Millennium Bridge from Terry Avenue",
+      "Description": "Access to Millennium Bridge from Terry Avenue",
+      "StationId": "L2406",
+      "WarningLevel": 3.17,
+      "DangerLevel": 3.22,
+      "Location": {
+        "Long": --1.081976,
+        "Lat": 53.945849
+      }
+    },
   ]
 }
